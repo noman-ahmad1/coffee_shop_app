@@ -23,6 +23,7 @@ dependencies:
   hive_flutter:
   change_app_package_name: ^1.4.0
   rename: ^2.1.1
+  firebase_core: ^3.10.1
 
 
 dev_dependencies:
