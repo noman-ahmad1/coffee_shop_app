@@ -33,21 +33,21 @@ class CartView extends StackedView<CartViewModel> {
             backgroundColor: kcBackgroundColor2,
             body: SafeArea(
               child: Container(
-                height: screenSize.height*0.905,
+                height: screenSize.height * 0.905,
                 child: Stack(
                   children: [
                     Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         TopBar(
-                              title: 'Cart',
-                              icon: myIcons.cart,
-                              onBackButtonPressed: () {
-                                Navigator.pop(context);
-                              }),
-                              SizedBox(
-                                height: screenSize.height*0.2,
-                              ),
+                            title: 'Cart',
+                            icon: myIcons.cart,
+                            onBackButtonPressed: () {
+                              Navigator.pop(context);
+                            }),
+                        SizedBox(
+                          height: screenSize.height * 0.2,
+                        ),
                         Container(
                           height: screenSize.height * 0.3,
                           child: Image.asset('assets/low_battery.png'),
@@ -65,50 +65,50 @@ class CartView extends StackedView<CartViewModel> {
                       ],
                     ),
                     Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Container(
-                      decoration: const BoxDecoration(
-                        color: kcBackgroundColor2,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(16),
-                          topRight: Radius.circular(16),
+                      alignment: Alignment.bottomCenter,
+                      child: Container(
+                        decoration: const BoxDecoration(
+                          color: kcBackgroundColor2,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(16),
+                            topRight: Radius.circular(16),
+                          ),
                         ),
-                      ),
-                      height: screenSize.height * 0.15,
-                      width: screenSize.width,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 15, horizontal: 18),
-                        child: Column(
-                          children: [
-                            GestureDetector(
-                              onTap: () {},
-                              child: Container(
-                                decoration: const BoxDecoration(
-                                  color: kcLightCoffeeColor,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(16)),
-                                ),
-                                height: screenSize.height * 0.07,
-                                width: screenSize.width * 0.9,
-                                child: const Center(
-                                  child: Text(
-                                    'Add your favorite pick-me-up to your cart.',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontFamily: 'Sora',
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w900),
+                        height: screenSize.height * 0.15,
+                        width: screenSize.width,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 15, horizontal: 18),
+                          child: Column(
+                            children: [
+                              GestureDetector(
+                                onTap: () {},
+                                child: Container(
+                                  decoration: const BoxDecoration(
+                                    color: kcLightCoffeeColor,
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(16)),
+                                  ),
+                                  height: screenSize.height * 0.07,
+                                  width: screenSize.width * 0.9,
+                                  child: const Center(
+                                    child: Text(
+                                      'Add your favorite pick-me-up to your cart.',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontFamily: 'Sora',
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w900),
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
                   ],
                 ),
               ),

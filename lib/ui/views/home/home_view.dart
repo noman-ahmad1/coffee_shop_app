@@ -11,6 +11,7 @@ class HomeView extends StackedView<HomeViewModel> {
     HomeViewModel viewModel,
     Widget? child,
   ) {
+    final screenSize = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: kcBlackColor,
       body: SafeArea(
@@ -49,8 +50,36 @@ class HomeView extends StackedView<HomeViewModel> {
             textAlign: TextAlign.center,
             style: TextStyle(fontFamily: 'Sora', color: kcLightGrey),
           ),
-          const SizedBox(
-            height: 60,
+          SizedBox(
+            height: screenSize.height*0.05,
+          ),
+          GestureDetector(
+            onTap: () {
+              viewModel.navigateToEmailauth();
+            },
+            child: Container(
+              decoration: const BoxDecoration(
+                color: kcLightCoffeeColor,
+                borderRadius: BorderRadius.all(Radius.circular(15)),
+              ),
+              height: screenSize.height*0.07,
+              width: screenSize.width*0.9,
+              child: const Padding(
+                padding: EdgeInsets.only(top: 19),
+                child: Text(
+                  'Sign In with Email',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: 'Sora',
+                      fontSize: 15,
+                      fontWeight: FontWeight.w900),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: screenSize.height*0.03,
           ),
           GestureDetector(
             onTap: () {
@@ -61,12 +90,12 @@ class HomeView extends StackedView<HomeViewModel> {
                 color: kcLightCoffeeColor,
                 borderRadius: BorderRadius.all(Radius.circular(15)),
               ),
-              height: 60,
-              width: 300,
+              height: screenSize.height*0.07,
+              width: screenSize.width*0.9,
               child: const Padding(
                 padding: EdgeInsets.only(top: 19),
                 child: Text(
-                  'Get Started',
+                  'Sign In with Phone',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: Colors.white,

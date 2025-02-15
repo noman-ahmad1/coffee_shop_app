@@ -199,8 +199,6 @@ class FavouritesView extends StackedView<FavouritesViewModel> {
         ),
       ),
     );
-
-    
   }
 
   @override

@@ -15,7 +15,8 @@ class FavouritesViewModel extends DashboardViewModel {
     _favouritesService.removeFromFavourites(coffee);
     notifyListeners(); // Notify UI to rebuild
   }
-  bool isFavourite(CoffeeFlavor coffeeList){
+
+  bool isFavourite(CoffeeFlavor coffeeList) {
     return _favouritesService.isFavourite(coffeeList);
   }
 }

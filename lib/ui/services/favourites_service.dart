@@ -18,8 +18,8 @@ class FavouritesService with ListenableServiceMixin {
     favouritesBox = Hive.box('favourites');
 
     // Load saved favourites from Hive
-    favourites = List<CoffeeFlavor>.from(
-        favouritesBox.get('favouritesList') ?? []);
+    favourites =
+        List<CoffeeFlavor>.from(favouritesBox.get('favouritesList') ?? []);
     notifyListeners();
   }
 

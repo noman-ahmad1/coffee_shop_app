@@ -32,8 +32,7 @@ class DashboardView extends StackedView<DashboardViewModel> {
           color: kcBackgroundColor,
         ),
         if (viewModel.currentIndex == 0) ProductsView(),
-        if (viewModel.currentIndex == 1)
-          const FavouritesView(),
+        if (viewModel.currentIndex == 1) const FavouritesView(),
         if (viewModel.currentIndex == 2)
           CartView(onNavigateToProducts: () {
             viewModel.setIndex(0);

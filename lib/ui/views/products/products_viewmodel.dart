@@ -31,17 +31,20 @@ class ProductsViewModel extends DashboardViewModel {
   void init() {
     _cartService.addListener(notifyListeners);
   }
+
   final FavouritesService _favouritesService = locator<FavouritesService>();
   List<CoffeeFlavor> get favourites => _favouritesService.favourites;
   // bool get isFavourite => _favouritesService.isFavourite(coffeeList as CoffeeFlavor);
-  bool isFavourite(CoffeeFlavor coffeeList){
+  bool isFavourite(CoffeeFlavor coffeeList) {
     return _favouritesService.isFavourite(coffeeList);
   }
-  void addToFavourites(CoffeeFlavor coffeeList){
+
+  void addToFavourites(CoffeeFlavor coffeeList) {
     _favouritesService.addToFavourites(coffeeList);
     print('item added to favourites');
   }
-  void removeFromFavourites(CoffeeFlavor coffeeList){
+
+  void removeFromFavourites(CoffeeFlavor coffeeList) {
     _favouritesService.removeFromFavourites(coffeeList);
     print('item removed from favourites');
   }

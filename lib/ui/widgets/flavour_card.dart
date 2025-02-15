@@ -54,25 +54,25 @@ class FlavourCard extends StatelessWidget {
                         height: screenSize.height * 0.155,
                         width: screenSize.width * 0.8,
                         fit: BoxFit.cover),
-                        GestureDetector(
-                        onTap: onFavPressed,
-                        child: Container(
-                          decoration: const BoxDecoration(
-                              color: Colors.transparent,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(12))),
-                          height: screenSize.height * 0.038,
-                          width: screenSize.width * 0.09,
-                          child: Center(
-                            child: Image.asset(
-                              favButton,
-                              color: Colors.white,
-                              height: screenSize.height * 0.027,
-                              width: screenSize.width * 0.07,
-                            ),
+                    GestureDetector(
+                      onTap: onFavPressed,
+                      child: Container(
+                        decoration: const BoxDecoration(
+                            color: Colors.transparent,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(12))),
+                        height: screenSize.height * 0.038,
+                        width: screenSize.width * 0.09,
+                        child: Center(
+                          child: Image.asset(
+                            favButton,
+                            color: Colors.white,
+                            height: screenSize.height * 0.027,
+                            width: screenSize.width * 0.07,
                           ),
                         ),
                       ),
+                    ),
                   ],
                 ),
               ),

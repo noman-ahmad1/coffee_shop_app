@@ -14,7 +14,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
-);
+  );
   await Hive.initFlutter();
   Hive.registerAdapter(CoffeeFlavorAdapter()); // Register the adapter
   await Hive.openBox('cart');

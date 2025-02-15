@@ -12,6 +12,8 @@ import 'package:my_first_app/ui/views/cart/cart_view.dart';
 import 'package:my_first_app/ui/views/home_screen/home_screen_view.dart';
 import 'package:my_first_app/ui/views/products/products_view.dart';
 import 'package:my_first_app/ui/views/favourites/favourites_view.dart';
+import 'package:my_first_app/ui/views/emailauth/emailauth_view.dart';
+import 'package:my_first_app/ui/views/phoneauth/phoneauth_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -26,6 +28,8 @@ import 'package:my_first_app/ui/views/favourites/favourites_view.dart';
     MaterialRoute(page: HomeScreenView),
     MaterialRoute(page: ProductsView),
     MaterialRoute(page: FavouritesView),
+    MaterialRoute(page: EmailauthView),
+    MaterialRoute(page: PhoneauthView),
 // @stacked-route
   ],
   dependencies: [

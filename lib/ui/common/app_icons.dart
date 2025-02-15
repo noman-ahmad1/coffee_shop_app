@@ -30,7 +30,8 @@ class myIcons {
   static const String minus = 'assets/icons/minus.png';
   static const String home_filled = 'assets/icons/home_filled.png';
   static const String home_outlined = 'assets/icons/home_outlined.png';
-  static const String favourite_outlined = 'assets/icons/favourite_outlined.png';
+  static const String favourite_outlined =
+      'assets/icons/favourite_outlined.png';
   static const String favourite_filled = 'assets/icons/favourite_filled.png';
   static const String cart_outlined = 'assets/icons/cart_outlined.png';
   static const String cart_filled = 'assets/icons/cart_filled.png';
