@@ -10,6 +10,7 @@ import 'package:my_first_app/ui/services/authentication_service.dart';
 import 'package:my_first_app/ui/services/cart_service.dart';
 import 'package:my_first_app/ui/services/favourites_service.dart';
 import 'package:my_first_app/ui/services/notification_service.dart';
+import 'package:my_first_app/ui/services/order_service.dart';
 import 'package:stacked_services/src/bottom_sheet/bottom_sheet_service.dart';
 import 'package:stacked_services/src/dialog/dialog_service.dart';
 import 'package:stacked_services/src/navigation/navigation_service.dart';
@@ -30,6 +31,7 @@ Future<void> setupLocator({
   locator.registerLazySingleton(() => DialogService());
   locator.registerLazySingleton(() => NavigationService());
   locator.registerLazySingleton(() => CartService());
+  locator.registerLazySingleton(() => OrderService());
   locator.registerLazySingleton(() => FavouritesService());
   locator.registerLazySingleton(() => AuthenticationService());
   locator.registerLazySingleton(() => NotificationService());

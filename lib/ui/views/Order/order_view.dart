@@ -1087,6 +1087,7 @@ class OrderView extends StackedView<OrderViewModel> {
                       },
                       child: GestureDetector(
                         onTap: () {
+                          viewModel.confirmOrder();
                           viewModel.navigateToMap();
                         },
                         child: Container(

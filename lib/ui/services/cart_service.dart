@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:my_first_app/ui/models.dart/coffee_model.dart';
@@ -10,6 +11,9 @@ class CartService with ListenableServiceMixin {
   double totalPrice = 0.0;
   double deliveryFee = 0.2;
 
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final String userId = "user123"; // Replace with actual user ID from auth
+
   CartService() {
     listenToReactiveValues(cartItems);
     _initializeCart();
@@ -21,82 +25,87 @@ class CartService with ListenableServiceMixin {
     }
     cartBox = Hive.box('cart');
 
-    // Ensure unique items in cart when loading from Hive
-    cartItems = List<CoffeeFlavor>.from(cartBox.get("itemslist") ?? []);
-    _sanitizeCartItems();
+    // Load cart from Firestore
+    await _loadCartFromFirestore();
+  }
+
+  Future<void> _loadCartFromFirestore() async {
+    final cartSnapshot = await _firestore.collection('users').doc(userId).collection('cart').get();
+
+    cartItems = cartSnapshot.docs.map((doc) {
+      final data = doc.data();
+      return CoffeeFlavor(
+        id: doc.id, // Firestore doc ID
+        name: data['name'],
+        description: data['description'],
+        imageAsset: data['imageAsset'],
+        price: data['price'],
+        quantity: data['quantity'],
+      );
+    }).toList();
+
+    cartBox.put("itemslist", cartItems); // Save locally
     calculateTotalPrice();
-  }
-
-  // Ensures unique items in the cart
-  void _sanitizeCartItems() {
-    final uniqueItems = <String, CoffeeFlavor>{};
-
-    for (var item in cartItems) {
-      if (uniqueItems.containsKey(item.name)) {
-        // Combine quantities for duplicate items
-        uniqueItems[item.name]!.quantity += item.quantity;
-      } else {
-        uniqueItems[item.name] = item;
-      }
-    }
-
-    cartItems = uniqueItems.values.toList();
-    cartBox.put("itemslist", cartItems); // Save the sanitized list to Hive
-  }
-
-  int get totalItemCount {
-    return cartItems.fold(0, (sum, item) => sum + item.quantity);
-  }
-
-  int get cartItemCount {
-    return cartItems.length;
+    notifyListeners();
   }
 
   void addItemToCart(CoffeeFlavor item) async {
-    // Check if item already exists in the cart
-    final existingItem = cartItems.firstWhere(
-      (element) => element.name == item.name,
-      orElse: () => CoffeeFlavor(
-          name: '', price: '', description: '', quantity: 0, imageAsset: '', id: ''),
-    );
+    final existingItemIndex = cartItems.indexWhere((element) => element.id == item.id);
 
-    if (existingItem.name.isNotEmpty) {
-      // Update quantity if item already exists
-      existingItem.quantity += 1;
+    if (existingItemIndex != -1) {
+      cartItems[existingItemIndex].quantity += 1;
     } else {
-      // Add new item to the cart
       item.quantity = 1;
       cartItems.add(item);
     }
 
-    // Recalculate and save changes
+    await _updateCartInFirestore();
     calculateTotalPrice();
-    cartBox.put("itemslist", cartItems); // Save to Hive
-    notifyListeners(); // Notify listeners to update UI
+    notifyListeners();
   }
 
   void removeItem(CoffeeFlavor item) async {
-    // Check if item exists in the cart
-    final existingItem = cartItems.firstWhere(
-      (element) => element.name == item.name,
-      orElse: () => CoffeeFlavor(
-          name: '', price: '', description: '', quantity: 0, imageAsset: '', id: ''),
-    );
+    final existingItemIndex = cartItems.indexWhere((element) => element.id == item.id);
 
-    if (existingItem.name.isNotEmpty) {
-      if (existingItem.quantity > 1) {
-        // Decrease quantity if greater than 1
-        existingItem.quantity -= 1;
+    if (existingItemIndex != -1) {
+      if (cartItems[existingItemIndex].quantity > 1) {
+        cartItems[existingItemIndex].quantity -= 1;
       } else {
-        // Remove item if quantity becomes 0
-        cartItems.remove(existingItem);
+        cartItems.removeAt(existingItemIndex);
       }
     }
 
-    // Recalculate and save changes
+    await _updateCartInFirestore();
     calculateTotalPrice();
-    cartBox.put("itemslist", cartItems); // Save updated list to Hive
-    notifyListeners(); // Notify listeners to update UI
+    notifyListeners();
+  }
+
+  void clearCart() async {
+    cartItems.clear();
+    await _firestore.collection('users').doc(userId).collection('cart').get().then((snapshot) {
+      for (var doc in snapshot.docs) {
+        doc.reference.delete();
+      }
+    });
+
+    cartBox.clear();
+    notifyListeners();
+  }
+
+  Future<void> _updateCartInFirestore() async {
+    final cartRef = _firestore.collection('users').doc(userId).collection('cart');
+
+    for (var item in cartItems) {
+      await cartRef.doc(item.id).set({
+        'name': item.name,
+        'description': item.description,
+        'imageAsset': item.imageAsset,
+        'price': item.price,
+        'quantity': item.quantity,
+      });
+    }
+
+    cartBox.put("itemslist", cartItems); // Sync with local storage
   }
 
   void calculateTotalPrice() {
@@ -109,10 +118,11 @@ class CartService with ListenableServiceMixin {
 
     totalPrice = overAllPrice + deliveryFee;
   }
+  int get totalItemCount {
+  return cartItems.fold(0, (sum, item) => sum + (item.quantity ?? 0));
+}
+int get cartItemCount {
+  return cartItems.length;
+}
 
-  void clearCart() {
-    cartItems.clear();
-    cartBox.clear();
-    notifyListeners();
-  }
 }
