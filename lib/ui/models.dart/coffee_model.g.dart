@@ -22,6 +22,7 @@ class CoffeeFlavorAdapter extends TypeAdapter<CoffeeFlavor> {
       imageAsset: fields[2] as String,
       price: fields[3] as String,
       quantity: fields[4] as int,
+      id: '',
     );
   }
 

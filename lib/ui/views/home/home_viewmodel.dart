@@ -15,7 +15,12 @@ class HomeViewModel extends BaseViewModel {
           DateTime.now().microsecondsSinceEpoch.toString(),
         ));
   }
+
   navigateToEmailauth() {
     _navigationService.navigateToEmailauthView();
+  }
+
+  navigateToPhoneauth() {
+    _navigationService.navigateToPhoneauthView();
   }
 }

@@ -57,7 +57,7 @@ class CartService with ListenableServiceMixin {
     final existingItem = cartItems.firstWhere(
       (element) => element.name == item.name,
       orElse: () => CoffeeFlavor(
-          name: '', price: '', description: '', quantity: 0, imageAsset: ''),
+          name: '', price: '', description: '', quantity: 0, imageAsset: '', id: ''),
     );
 
     if (existingItem.name.isNotEmpty) {
@@ -80,7 +80,7 @@ class CartService with ListenableServiceMixin {
     final existingItem = cartItems.firstWhere(
       (element) => element.name == item.name,
       orElse: () => CoffeeFlavor(
-          name: '', price: '', description: '', quantity: 0, imageAsset: ''),
+          name: '', price: '', description: '', quantity: 0, imageAsset: '', id: ''),
     );
 
     if (existingItem.name.isNotEmpty) {

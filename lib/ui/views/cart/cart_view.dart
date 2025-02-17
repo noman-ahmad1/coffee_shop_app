@@ -36,33 +36,36 @@ class CartView extends StackedView<CartViewModel> {
                 height: screenSize.height * 0.905,
                 child: Stack(
                   children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        TopBar(
-                            title: 'Cart',
-                            icon: myIcons.cart,
-                            onBackButtonPressed: () {
-                              Navigator.pop(context);
-                            }),
-                        SizedBox(
-                          height: screenSize.height * 0.2,
-                        ),
-                        Container(
-                          height: screenSize.height * 0.3,
-                          child: Image.asset('assets/low_battery.png'),
-                        ),
-                        Text(
-                          textAlign: TextAlign.center,
-                          'Recharge in your happy place, one cup at a time.',
-                          style: TextStyle(
-                            color: kcLightCoffeeColor,
-                            fontSize: 21,
-                            fontFamily: 'Sora',
-                            fontWeight: FontWeight.w900,
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(18, 20, 18, 0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          TopBar(
+                              title: 'Cart',
+                              icon: myIcons.cart,
+                              onBackButtonPressed: () {
+                                Navigator.pop(context);
+                              }),
+                          SizedBox(
+                            height: screenSize.height * 0.2,
                           ),
-                        ),
-                      ],
+                          Container(
+                            height: screenSize.height * 0.3,
+                            child: Image.asset('assets/low_battery.png'),
+                          ),
+                          Text(
+                            textAlign: TextAlign.center,
+                            'Recharge in your happy place, one cup at a time.',
+                            style: TextStyle(
+                              color: kcLightCoffeeColor,
+                              fontSize: 21,
+                              fontFamily: 'Sora',
+                              fontWeight: FontWeight.w900,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                     Align(
                       alignment: Alignment.bottomCenter,

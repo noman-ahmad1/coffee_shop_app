@@ -51,7 +51,7 @@ class HomeView extends StackedView<HomeViewModel> {
             style: TextStyle(fontFamily: 'Sora', color: kcLightGrey),
           ),
           SizedBox(
-            height: screenSize.height*0.05,
+            height: screenSize.height * 0.05,
           ),
           GestureDetector(
             onTap: () {
@@ -62,8 +62,8 @@ class HomeView extends StackedView<HomeViewModel> {
                 color: kcLightCoffeeColor,
                 borderRadius: BorderRadius.all(Radius.circular(15)),
               ),
-              height: screenSize.height*0.07,
-              width: screenSize.width*0.9,
+              height: screenSize.height * 0.07,
+              width: screenSize.width * 0.9,
               child: const Padding(
                 padding: EdgeInsets.only(top: 19),
                 child: Text(
@@ -79,19 +79,19 @@ class HomeView extends StackedView<HomeViewModel> {
             ),
           ),
           SizedBox(
-            height: screenSize.height*0.03,
+            height: screenSize.height * 0.03,
           ),
           GestureDetector(
             onTap: () {
-              viewModel.navigateToDashboard();
+              viewModel.navigateToPhoneauth();
             },
             child: Container(
               decoration: const BoxDecoration(
                 color: kcLightCoffeeColor,
                 borderRadius: BorderRadius.all(Radius.circular(15)),
               ),
-              height: screenSize.height*0.07,
-              width: screenSize.width*0.9,
+              height: screenSize.height * 0.07,
+              width: screenSize.width * 0.9,
               child: const Padding(
                 padding: EdgeInsets.only(top: 19),
                 child: Text(

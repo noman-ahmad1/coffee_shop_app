@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:my_first_app/ui/common/app_colors.dart';
 import 'package:stacked/stacked.dart';
-import 'emailauth_viewmodel.dart';
 
-class EmailauthView extends StackedView<EmailauthViewModel> {
-  const EmailauthView({Key? key}) : super(key: key);
+import 'signup_viewmodel.dart';
+
+class SignupView extends StackedView<SignupViewModel> {
+  const SignupView({Key? key}) : super(key: key);
 
   @override
   Widget builder(
     BuildContext context,
-    EmailauthViewModel viewModel,
+    SignupViewModel viewModel,
     Widget? child,
   ) {
-    final TextEditingController _emailauthController = TextEditingController();
-    final TextEditingController _passwordauthController =
-        TextEditingController();
+    final TextEditingController _emailController = TextEditingController();
+    final TextEditingController _passwordController = TextEditingController();
     final screenSize = MediaQuery.of(context).size;
 
     return Scaffold(
@@ -26,7 +26,7 @@ class EmailauthView extends StackedView<EmailauthViewModel> {
               SizedBox(height: screenSize.height * 0.2),
               Center(
                 child: Text(
-                  "Welcome back!\nLet's grab some coffee",
+                  "Life begins after coffee\nlet’s make it official!",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 30,
@@ -38,7 +38,7 @@ class EmailauthView extends StackedView<EmailauthViewModel> {
               ),
               SizedBox(height: screenSize.height * 0.02),
               const Text(
-                'Enjoy the convenience of signing in\nwith your email.\nWe are available in all states.',
+                'Enjoy the convenience of signing up\nwith your email.\nWe are available in all states.',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontFamily: 'Sora',
@@ -62,7 +62,7 @@ class EmailauthView extends StackedView<EmailauthViewModel> {
                     ),
                     child: Text(
                       viewModel.errorMessage!,
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: Colors.white,
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
@@ -71,6 +71,7 @@ class EmailauthView extends StackedView<EmailauthViewModel> {
                     ),
                   ),
                 ),
+
               SizedBox(height: screenSize.height * 0.02),
 
               // Email Field
@@ -78,7 +79,7 @@ class EmailauthView extends StackedView<EmailauthViewModel> {
                 width: screenSize.width * 0.9,
                 child: TextField(
                   onChanged: (value) => viewModel.email = value,
-                  controller: _emailauthController,
+                  controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
                   style: const TextStyle(
                     fontFamily: 'Sora',
@@ -112,7 +113,7 @@ class EmailauthView extends StackedView<EmailauthViewModel> {
                 width: screenSize.width * 0.9,
                 child: TextField(
                   onChanged: (value) => viewModel.password = value,
-                  controller: _passwordauthController,
+                  controller: _passwordController,
                   keyboardType: TextInputType.visiblePassword,
                   obscureText: true,
                   style: const TextStyle(
@@ -142,11 +143,13 @@ class EmailauthView extends StackedView<EmailauthViewModel> {
               ),
               SizedBox(height: screenSize.height * 0.05),
 
-              // Sign In Button
+              // Sign Up Button
               GestureDetector(
                 onTap: () {
-                  viewModel.signInWithEmail(
-                      viewModel.email, viewModel.password);
+                  viewModel.signUpWithEmail(
+                    viewModel.email,
+                    viewModel.password,
+                  );
                 },
                 child: Container(
                   decoration: const BoxDecoration(
@@ -155,35 +158,8 @@ class EmailauthView extends StackedView<EmailauthViewModel> {
                   ),
                   height: screenSize.height * 0.07,
                   width: screenSize.width * 0.9,
-                  child: const Center(
-                    child: Text(
-                      'Sign In',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontFamily: 'Sora',
-                        fontSize: 15,
-                        fontWeight: FontWeight.w900,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(height: screenSize.height * 0.02),
-
-              // Sign Up Button (Properly Positioned)
-              GestureDetector(
-                onTap: () {
-                  viewModel.navigateToSignUp();
-                },
-                child: Container(
-                  decoration: const BoxDecoration(
-                    color: kcLightGrey,
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
-                  ),
-                  height: screenSize.height * 0.07,
-                  width: screenSize.width * 0.9,
-                  child: const Center(
+                  child: const Padding(
+                    padding: EdgeInsets.only(top: 19),
                     child: Text(
                       'Sign Up',
                       textAlign: TextAlign.center,
@@ -205,6 +181,5 @@ class EmailauthView extends StackedView<EmailauthViewModel> {
   }
 
   @override
-  EmailauthViewModel viewModelBuilder(BuildContext context) =>
-      EmailauthViewModel();
+  SignupViewModel viewModelBuilder(BuildContext context) => SignupViewModel();
 }

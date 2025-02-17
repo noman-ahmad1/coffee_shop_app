@@ -31,8 +31,9 @@ class AuthenticationService {
     }
   }
 
-  // Sign in with phone number
-  Future<void> signInWithPhoneNumber(String phoneNumber) async {
+  // Sign in with phone number (Updated)
+  Future<void> signInWithPhoneNumber(
+      String phoneNumber, Function(String) onCodeSent) async {
     try {
       await _auth.verifyPhoneNumber(
         phoneNumber: phoneNumber,
@@ -40,17 +41,16 @@ class AuthenticationService {
           await _auth.signInWithCredential(credential);
         },
         verificationFailed: (FirebaseAuthException e) {
-          print('Verification failed: ${e.message}');
+          throw e.message ?? 'Verification failed';
         },
         codeSent: (String verificationId, int? resendToken) {
-          // Store the verification ID and show a UI to enter the OTP
+          onCodeSent(verificationId); // Pass verificationId back to ViewModel
         },
-        codeAutoRetrievalTimeout: (String verificationId) {
-          // Auto-resolution timeout
-        },
+        codeAutoRetrievalTimeout: (String verificationId) {},
       );
     } catch (e) {
       print('Error verifying phone number: $e');
+      throw e.toString();
     }
   }
 

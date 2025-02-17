@@ -6,6 +6,7 @@ import 'package:my_first_app/ui/views/dashboard/detail.dart';
 import 'package:my_first_app/ui/views/favourites/favourites_view.dart';
 import 'package:my_first_app/ui/views/home/home_viewmodel.dart';
 import 'package:my_first_app/ui/views/dashboard/bottom_bar.dart';
+import 'package:my_first_app/ui/views/notification/notification_view.dart';
 import 'package:my_first_app/ui/views/products/products_view.dart';
 import 'package:stacked/stacked.dart';
 import 'package:my_first_app/ui/common/app_colors.dart';
@@ -31,16 +32,12 @@ class DashboardView extends StackedView<DashboardViewModel> {
           height: screenSize.height * 0.34,
           color: kcBackgroundColor,
         ),
-        if (viewModel.currentIndex == 0) ProductsView(),
+        if (viewModel.currentIndex == 0) const ProductsView(),
         if (viewModel.currentIndex == 1) const FavouritesView(),
-        if (viewModel.currentIndex == 2)
-          CartView(onNavigateToProducts: () {
+        if (viewModel.currentIndex == 2)CartView(onNavigateToProducts: () {
             viewModel.setIndex(0);
           }),
-        if (viewModel.currentIndex == 3)
-          Container(
-            child: Text("Notifications"),
-          ),
+        if (viewModel.currentIndex == 3)const NotificationView(),
         Align(
           alignment: Alignment.bottomCenter,
           child: BottomBar(

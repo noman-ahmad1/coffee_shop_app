@@ -2,6 +2,7 @@ import 'package:my_first_app/ui/models.dart/coffee_model.dart';
 
 List<CoffeeFlavor> coffeeList = [
   CoffeeFlavor(
+      id: 'mocha',
       name: 'Caffe Mocha',
       description:
           'A sophisticated blend of espresso, steamed milk, and smooth chocolate, our Caffe Mocha is a true delight for the senses.',
@@ -9,6 +10,7 @@ List<CoffeeFlavor> coffeeList = [
       price: '4.22',
       quantity: 0),
   CoffeeFlavor(
+      id: 'flat_white',
       name: 'Flat White',
       description:
           'A refined blend of espresso and velvety microfoam, our Flat White offers a sophisticated coffee experience with a subtle sweetness.',
@@ -16,6 +18,7 @@ List<CoffeeFlavor> coffeeList = [
       price: '4.93',
       quantity: 0),
   CoffeeFlavor(
+      id: 'latte',
       name: 'Caffe Latte',
       description:
           'A timeless classic, our Caffe Latte marries the robust flavor of espresso with the silky smoothness of steamed milk, creating a balanced and comforting beverage.',
@@ -23,6 +26,7 @@ List<CoffeeFlavor> coffeeList = [
       price: '5.61',
       quantity: 0),
   CoffeeFlavor(
+      id: 'espresso',
       name: 'Espresso',
       description:
           'Our espresso is meticulously crafted from the finest beans, offering a rich and complex flavor profile that celebrates the true essence of coffee.',
@@ -30,6 +34,7 @@ List<CoffeeFlavor> coffeeList = [
       price: '4.43',
       quantity: 0),
   CoffeeFlavor(
+      id: 'capuccino',
       name: 'Capuccino',
       description:
           'A refined blend of espresso and velvety microfoam, our Flat White offers a sophisticated coffee experience with a subtle sweetness.',
@@ -37,6 +42,7 @@ List<CoffeeFlavor> coffeeList = [
       price: '4.93',
       quantity: 0),
   CoffeeFlavor(
+      id: 'pistachio_latte',
       name: 'Pistachio Latte',
       description:
           'A refined blend of espresso and velvety microfoam, our Flat White offers a sophisticated coffee experience with a subtle sweetness.',
@@ -44,6 +50,7 @@ List<CoffeeFlavor> coffeeList = [
       price: '4.93',
       quantity: 0),
   CoffeeFlavor(
+      id: 'vanilla_latte',
       name: 'Vanilla Latte',
       description:
           'A refined blend of espresso and velvety microfoam, our Flat White offers a sophisticated coffee experience with a subtle sweetness.',
@@ -51,6 +58,7 @@ List<CoffeeFlavor> coffeeList = [
       price: '4.93',
       quantity: 0),
   CoffeeFlavor(
+      id: 'spanish_latte',
       name: 'Spanish Latte',
       description:
           'A refined blend of espresso and velvety microfoam, our Flat White offers a sophisticated coffee experience with a subtle sweetness.',
