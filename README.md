@@ -1,3 +1,3 @@
-# my_first_app
+# Coffee Shop Application
 
 A new Flutter project.
